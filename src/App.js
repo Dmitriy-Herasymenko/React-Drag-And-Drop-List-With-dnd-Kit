@@ -1,7 +1,3 @@
-
-import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import {
@@ -14,8 +10,9 @@ import {
   verticalListSortingStrategy
 } from "@dnd-kit/sortable";
 import {SortableItem} from "./SortableItem";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+export const App = () => {
   const [lang, setLang] = useState(["JavaScritp", "Python", "PHP", "TypeScript"])
   return (
     <DndContext
@@ -35,8 +32,16 @@ function App() {
   );
 
   function handleDragEnd (event) {
-    console.log("drag and called");
+    const {active, over} = event;
+
+    if(active.id !== over.id) {
+      setLang((items) => {
+        const activeIndex = items.indexOf(active.id);
+        const overIndex = items.indexOf(over.id);
+        console.log("arraySort", arrayMove(items, activeIndex, overIndex))
+       return arrayMove(items, activeIndex, overIndex)
+      })
+    }
   }
 }
 
-export default App;

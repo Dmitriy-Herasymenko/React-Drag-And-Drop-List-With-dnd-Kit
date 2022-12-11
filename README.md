@@ -1,7 +1,7 @@
 
-## `Install project`
+## `npm i`
 
-npm i
+Install project
 
 In the project directory, you can run:
 
